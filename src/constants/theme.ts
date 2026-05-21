@@ -6,25 +6,40 @@
 import "@/global.css";
 
 import { Platform } from "react-native";
+import { green } from "react-native-reanimated/lib/typescript/Colors";
 
 export const Colors = {
   light: {
     principalText: "#111111",
     secondaryText: "#4B4B4B",
-    background: "#ffffff",
-    backgroundElement: "#F0F0F3",
+    background: "#FFC0CB",
+    backgroundElement: "#FFE5EC",
     backgroundSelected: "#E0E1E6",
-    orange: "#FF9F1C",
     button: "#00C2FF",
+    orange: "#FF9F1C",
+    yellow: "#FFD60A",
+    red: "#FF5D73",
+    blue: "#00C2FF",
+    green: "#06D6A0",
+    purple: "#9B5DE5",
+    pink: "#FF4FA3",
+    cyan: "#00B8D9",
   },
   dark: {
     principalText: "#FFFFFF",
     secondaryText: "#CFCFCF",
-    background: "#000000",
-    backgroundElement: "#212225",
+    background: "#1A1A1A",
+    backgroundElement: "#2B2B2B",
     backgroundSelected: "#2E3135",
     button: "#00C2FF",
     orange: "#FF9F1C",
+    yellow: "#FFD60A",
+    red: "#FF5D73",
+    blue: "#00C2FF",
+    green: "#06D6A0",
+    purple: "#9B5DE5",
+    pink: "#FF4FA3",
+    cyan: "#00B8D9",
   },
 } as const;
 
