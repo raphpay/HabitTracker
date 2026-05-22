@@ -1,38 +1,62 @@
-import { StyleSheet, Pressable, useColorScheme } from "react-native";
-import {
-  BottomTabInset,
-  Colors,
-  MaxContentWidth,
-  Spacing,
-} from "@/constants/theme";
-import { ThemedText } from "../themed-text";
+import { Pressable, StyleSheet, ViewStyle } from "react-native";
+import { ThemedText } from "@/components/themed-text";
 
-type Props = { title: string };
+type Props = {
+  title: string;
+  onPress?: () => void;
+  variant?: "primary" | "secondary";
+  style?: ViewStyle;
+};
 
-export function NeoButton(props: Props) {
-  const scheme = useColorScheme();
-  const colors = Colors[scheme === "unspecified" ? "light" : scheme];
-
+export function NeoButton({
+  title,
+  onPress,
+  variant = "primary",
+  style,
+}: Props) {
   return (
-    <Pressable style={[styles.container, { backgroundColor: colors.button }]}>
-      <ThemedText>{props.title}</ThemedText>
+    <Pressable
+      onPress={onPress}
+      style={({ pressed }) => [
+        styles.base,
+        variant === "primary" ? styles.primary : styles.secondary,
+        pressed && styles.pressed,
+        style,
+      ]}
+    >
+      <ThemedText type="smallBold" mode="principal">
+        {title}
+      </ThemedText>
     </Pressable>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
-    padding: Spacing.four,
+  base: {
+    padding: 4,
     height: 50,
-    width: "80%",
+    width: "100%",
     alignItems: "center",
     justifyContent: "center",
     borderWidth: 3,
-    borderColor: "black",
-    shadowColor: "black",
+    borderColor: "#000",
+    borderRadius: 8,
     shadowOffset: { width: 4, height: 4 },
     shadowOpacity: 1,
     shadowRadius: 0,
-    borderRadius: 4,
+    shadowColor: "#000",
+  },
+
+  primary: {
+    backgroundColor: "#00C2FF",
+  },
+
+  secondary: {
+    backgroundColor: "#FFF",
+  },
+
+  pressed: {
+    transform: [{ translateX: 2 }, { translateY: 2 }],
+    shadowOffset: { width: 2, height: 2 },
   },
 });
