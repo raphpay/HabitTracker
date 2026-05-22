@@ -44,10 +44,10 @@ export default function HomeScreen() {
         <ThemedView style={styles.heroSection}>
           {/*<AnimatedIcon />*/}
           <ThemedText type="title" style={styles.title}>
-            Suis tes habitudes, <br></br>simplement.
+            Suis tes habitudes, simplement.
           </ThemedText>
           <ThemedText type="small" style={styles.subtitle}>
-            1 tap par jour.<br></br>Pas de compte.<br></br>Pas de distraction.
+            1 tap par jour.Pas de compte.Pas de distraction.
           </ThemedText>
 
           <NeoButton title="Commencer maintenant" />
