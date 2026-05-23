@@ -3,7 +3,6 @@ import { ThemedText } from '@/components/themed-text'
 import { ThemedView } from '@/components/themed-view'
 import { BottomTabInset, MaxContentWidth, Spacing } from '@/constants/theme'
 import { hasSeenOnboarding, setOnboardingDone } from '@/lib/onboarding'
-import * as Haptics from 'expo-haptics'
 import { router } from 'expo-router'
 import { StyleSheet } from 'react-native'
 import { SafeAreaView } from 'react-native-safe-area-context'
@@ -29,13 +28,7 @@ export default function Onboarding() {
             1 tap par jour.Pas de compte.Pas de distraction.
           </ThemedText>
 
-          <NeoButton
-            onPress={() => {
-              Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium)
-              handleStart()
-            }}
-            title="Commencer maintenant"
-          />
+          <NeoButton onPress={handleStart} title="Commencer maintenant" />
         </ThemedView>
       </SafeAreaView>
     </ThemedView>

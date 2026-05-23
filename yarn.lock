@@ -3608,11 +3608,6 @@ expo-glass-effect@^55.0.11, expo-glass-effect@~55.0.11:
   resolved "https://registry.npmjs.org/expo-glass-effect/-/expo-glass-effect-55.0.11.tgz"
   integrity sha512-wqq7GUOqSkfoFJzreZvBG0jzjsq5c582m3glhWSjcmIuByxXXWp6j6GY6hyFuYKzpOXhbuvusVxGCQi0yWnp3g==
 
-expo-haptics@~55.0.14:
-  version "55.0.14"
-  resolved "https://registry.yarnpkg.com/expo-haptics/-/expo-haptics-55.0.14.tgz#9532ba088ee7eae561ad0ef5552c78f33161998a"
-  integrity sha512-KjDItBsA9mi1f5nRwf8g1wOdfEcLHwvEdt5Jl1sMCDETR/homcGOl+F3QIiPOl/PRlbGVieQsjTtF4DGtHOj6g==
-
 expo-image@^55.0.11, expo-image@~55.0.11:
   version "55.0.11"
   resolved "https://registry.npmjs.org/expo-image/-/expo-image-55.0.11.tgz"
@@ -7238,3 +7233,8 @@ zod@^3.25.76:
   version "3.25.76"
   resolved "https://registry.npmjs.org/zod/-/zod-3.25.76.tgz"
   integrity sha512-gzUt/qt81nXsFGKIFcC3YnfEAx5NkunCfnDlvuBSSFS02bcXu4Lmea0AFIUwbLWxWPx3d9p8S5QoaujKcNQxcQ==
+
+zustand@^5.0.13:
+  version "5.0.13"
+  resolved "https://registry.yarnpkg.com/zustand/-/zustand-5.0.13.tgz#06995c126e8903cd27100af04da91c36ae3051ed"
+  integrity sha512-efI2tVaVQPqtOh114loML/Z80Y4NP3yc+Ff0fYiZJPauNeWZeIp/bRFD7I9bfmCOYBh/PHxlglQ9+wvlwnPikQ==

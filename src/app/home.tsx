@@ -6,12 +6,10 @@ import { ThemedText } from '@/components/themed-text'
 import { ThemedView } from '@/components/themed-view'
 import { BottomTabInset, MaxContentWidth, Spacing } from '@/constants/theme'
 
-import * as Haptics from 'expo-haptics'
-
 export default function HomeScreen() {
   async function tap() {
     console.log('top')
-    Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium)
+    // Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium)
     console.log('stop')
   }
 
