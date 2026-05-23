@@ -6,6 +6,5 @@ export default function Index() {
     return <Redirect href={'/home'} />
   }
 
-  return <Redirect href={'/home'} />
-  // return <Redirect href={'/onboarding'} />
+  return <Redirect href={'/onboarding'} />
 }

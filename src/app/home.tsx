@@ -5,12 +5,11 @@ import { NeoButton } from '@/components/neo/neoButton'
 import { ThemedText } from '@/components/themed-text'
 import { ThemedView } from '@/components/themed-view'
 import { BottomTabInset, MaxContentWidth, Spacing } from '@/constants/theme'
+import { resetOnboarding } from '@/lib/onboarding'
 
 export default function HomeScreen() {
   async function tap() {
-    console.log('top')
-    // Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium)
-    console.log('stop')
+    resetOnboarding()
   }
 
   return (
