@@ -1,6 +1,4 @@
-import { createMMKV } from 'react-native-mmkv'
-
-export const storage = createMMKV()
+import { storage } from '@/storage/mmkv'
 
 const KEY = 'hasSeenOnboarding'
 

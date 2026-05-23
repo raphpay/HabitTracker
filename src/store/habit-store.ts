@@ -1,34 +1,47 @@
+import { getHabits, saveHabits } from '@/lib/habits-storage'
 import { Habit } from '@/lib/types/habit'
+
 import { create } from 'zustand'
 
-type HabitStore = {
+type Store = {
   habits: Habit[]
+  hydrate: () => void
+
   addHabit: (habit: Habit) => void
+  removeHabit: (id: string) => void
   toggleHabit: (id: string) => void
 }
 
-export const useHabitsStore = create<HabitStore>((set) => ({
+export const useHabitsStore = create<Store>((set, get) => ({
   habits: [],
 
-  addHabit: (habit) =>
-    set((state) => ({
-      habits: [...state.habits, habit],
-    })),
+  hydrate: () => {
+    set({ habits: getHabits() })
+  },
 
-  toggleHabit: (id) =>
-    set((state) => ({
-      habits: state.habits.map((habit) =>
-        habit.id === id
-          ? {
-              ...habit,
+  addHabit: (habit) => {
+    const updated = [...get().habits, habit]
+    set({ habits: updated })
+    saveHabits(updated)
+  },
 
-              completedDates: [
-                ...habit.completedDates,
+  removeHabit: (id) => {
+    const updated = get().habits.filter((h) => h.id !== id)
+    set({ habits: updated })
+    saveHabits(updated)
+  },
 
-                new Date().toISOString(),
-              ],
-            }
-          : habit,
-      ),
-    })),
+  toggleHabit: (id) => {
+    const updated = get().habits.map((h) =>
+      h.id === id
+        ? {
+            ...h,
+            completedDates: [...h.completedDates, new Date().toISOString()],
+          }
+        : h,
+    )
+
+    set({ habits: updated })
+    saveHabits(updated)
+  },
 }))

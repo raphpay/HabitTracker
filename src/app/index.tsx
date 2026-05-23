@@ -1,4 +1,4 @@
-import { hasSeenOnboarding } from '@/lib/onboarding'
+import { hasSeenOnboarding } from '@/lib/onboarding-storage'
 import { Redirect } from 'expo-router'
 
 export default function Index() {

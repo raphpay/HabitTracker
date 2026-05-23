@@ -4,4 +4,5 @@ export type Habit = {
   color: string
   frequency: 'daily' | 'weekly' | 'monthly'
   completedDates: string[]
+  createdAt: Date
 }

@@ -1,22 +1,45 @@
-import { StyleSheet } from 'react-native'
-import { SafeAreaView } from 'react-native-safe-area-context'
-
 import { NeoButton } from '@/components/neo/neoButton'
 import { ThemedText } from '@/components/themed-text'
 import { ThemedView } from '@/components/themed-view'
+import { CreateHabitSheet } from '@/components/ui/create-habit-sheet'
 import { BottomTabInset, MaxContentWidth, Spacing } from '@/constants/theme'
-import { resetOnboarding } from '@/lib/onboarding'
+import { useHabitsStore } from '@/store/habit-store'
+import BottomSheet from '@gorhom/bottom-sheet'
+import { useEffect, useRef, useState } from 'react'
+import { StyleSheet } from 'react-native'
+import { SafeAreaView } from 'react-native-safe-area-context'
 
 export default function HomeScreen() {
-  async function tap() {
-    resetOnboarding()
+  const [hasInitialized, setHasInitialized] = useState(false)
+
+  const bottomSheetRef = useRef<BottomSheet>(null)
+  const habits = useHabitsStore((state) => state.habits)
+  const hydrate = useHabitsStore((state) => state.hydrate)
+
+  function openCreateHabit() {
+    bottomSheetRef.current?.expand()
   }
+
+  useEffect(() => {
+    hydrate()
+    setHasInitialized(true)
+  }, [hydrate])
+
+  useEffect(() => {
+    if (!hasInitialized) return
+
+    if (habits.length === 0) {
+      openCreateHabit()
+    }
+  }, [habits.length, hasInitialized])
 
   return (
     <ThemedView style={styles.container}>
       <SafeAreaView style={styles.safeArea}>
         <ThemedText>Hello</ThemedText>
-        <NeoButton onPress={tap} title="Commencer maintenant" />
+        <NeoButton onPress={openCreateHabit} title="Commencer maintenant" />
+
+        <CreateHabitSheet ref={bottomSheetRef} />
       </SafeAreaView>
     </ThemedView>
   )
