@@ -3,28 +3,46 @@
  * There are many other ways to style your app. For example, [Nativewind](https://www.nativewind.dev/), [Tamagui](https://tamagui.dev/), [unistyles](https://reactnativeunistyles.vercel.app), etc.
  */
 
-import '@/global.css';
+import '@/global.css'
 
-import { Platform } from 'react-native';
+import { Platform } from 'react-native'
 
 export const Colors = {
   light: {
-    text: '#000000',
-    background: '#ffffff',
-    backgroundElement: '#F0F0F3',
+    principalText: '#111111',
+    secondaryText: '#4B4B4B',
+    background: '#FFC0CB',
+    backgroundElement: '#FFE5EC',
     backgroundSelected: '#E0E1E6',
-    textSecondary: '#60646C',
+    button: '#00C2FF',
+    orange: '#FF9F1C',
+    yellow: '#FFD60A',
+    red: '#FF5D73',
+    blue: '#00C2FF',
+    green: '#06D6A0',
+    purple: '#9B5DE5',
+    pink: '#FF4FA3',
+    cyan: '#00B8D9',
   },
   dark: {
-    text: '#ffffff',
-    background: '#000000',
-    backgroundElement: '#212225',
+    principalText: '#FFFFFF',
+    secondaryText: '#CFCFCF',
+    background: '#1A1A1A',
+    backgroundElement: '#2B2B2B',
     backgroundSelected: '#2E3135',
-    textSecondary: '#B0B4BA',
+    button: '#00C2FF',
+    orange: '#FF9F1C',
+    yellow: '#FFD60A',
+    red: '#FF5D73',
+    blue: '#00C2FF',
+    green: '#06D6A0',
+    purple: '#9B5DE5',
+    pink: '#FF4FA3',
+    cyan: '#00B8D9',
   },
-} as const;
+} as const
 
-export type ThemeColor = keyof typeof Colors.light & keyof typeof Colors.dark;
+export type ThemeColor = keyof typeof Colors.light & keyof typeof Colors.dark
 
 export const Fonts = Platform.select({
   ios: {
@@ -49,7 +67,7 @@ export const Fonts = Platform.select({
     rounded: 'var(--font-rounded)',
     mono: 'var(--font-mono)',
   },
-});
+})
 
 export const Spacing = {
   half: 2,
@@ -59,7 +77,7 @@ export const Spacing = {
   four: 24,
   five: 32,
   six: 64,
-} as const;
+} as const
 
-export const BottomTabInset = Platform.select({ ios: 50, android: 80 }) ?? 0;
-export const MaxContentWidth = 800;
+export const BottomTabInset = Platform.select({ ios: 50, android: 80 }) ?? 0
+export const MaxContentWidth = 800
