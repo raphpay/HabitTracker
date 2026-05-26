@@ -10,6 +10,9 @@ type Store = {
   addHabit: (habit: Habit) => void
   removeHabit: (id: string) => void
   toggleHabit: (id: string) => void
+
+  // DEV ONLY
+  resetHabits: () => void
 }
 
 export const useHabitsStore = create<Store>((set, get) => ({
@@ -43,5 +46,10 @@ export const useHabitsStore = create<Store>((set, get) => ({
 
     set({ habits: updated })
     saveHabits(updated)
+  },
+
+  resetHabits: () => {
+    set({ habits: [] })
+    saveHabits([])
   },
 }))

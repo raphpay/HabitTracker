@@ -1,5 +1,4 @@
 import { NeoButton } from '@/components/neo/neoButton'
-import { ThemedText } from '@/components/themed-text'
 import { ThemedView } from '@/components/themed-view'
 import { CreateHabitSheet } from '@/components/ui/create-habit-sheet'
 import { BottomTabInset, MaxContentWidth, Spacing } from '@/constants/theme'
@@ -36,8 +35,7 @@ export default function HomeScreen() {
   return (
     <ThemedView style={styles.container}>
       <SafeAreaView style={styles.safeArea}>
-        <ThemedText>Hello</ThemedText>
-        <NeoButton onPress={openCreateHabit} title="Commencer maintenant" />
+        <NeoButton onPress={openCreateHabit} title="Ajouter une habitude" />
 
         <CreateHabitSheet ref={bottomSheetRef} />
       </SafeAreaView>
