@@ -1,11 +1,12 @@
 import { NeoButton } from '@/components/neo/neoButton'
 import { ThemedView } from '@/components/themed-view'
 import { CreateHabitSheet } from '@/components/ui/create-habit-sheet'
+import { HabitCard } from '@/components/ui/habit-card'
 import { BottomTabInset, MaxContentWidth, Spacing } from '@/constants/theme'
 import { useHabitsStore } from '@/store/habit-store'
 import BottomSheet from '@gorhom/bottom-sheet'
 import { useEffect, useRef, useState } from 'react'
-import { StyleSheet } from 'react-native'
+import { StyleSheet, View } from 'react-native'
 import { SafeAreaView } from 'react-native-safe-area-context'
 
 export default function HomeScreen() {
@@ -14,6 +15,7 @@ export default function HomeScreen() {
   const bottomSheetRef = useRef<BottomSheet>(null)
   const habits = useHabitsStore((state) => state.habits)
   const hydrate = useHabitsStore((state) => state.hydrate)
+  const toggleHabit = useHabitsStore((state) => state.toggleHabit)
 
   function openCreateHabit() {
     bottomSheetRef.current?.expand()
@@ -35,6 +37,18 @@ export default function HomeScreen() {
   return (
     <ThemedView style={styles.container}>
       <SafeAreaView style={styles.safeArea}>
+        <View style={{ flex: 1, width: '100%', gap: 24 }}>
+          {habits.map((habit, index) => {
+            return (
+              <HabitCard
+                key={index}
+                habit={habit}
+                onPressCheck={() => toggleHabit(habit.id)}
+              />
+            )
+          })}
+        </View>
+
         <NeoButton onPress={openCreateHabit} title="Ajouter une habitude" />
 
         <CreateHabitSheet ref={bottomSheetRef} />
