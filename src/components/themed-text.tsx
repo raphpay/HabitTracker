@@ -8,9 +8,10 @@ export type ThemedTextProps = TextProps & {
   type?:
     | 'default'
     | 'title'
-    | 'medium'
     | 'small'
     | 'smallBold'
+    | 'medium'
+    | 'mediumBold'
     | 'subtitle'
     | 'link'
     | 'linkPrimary'
@@ -39,6 +40,7 @@ export function ThemedText({
         type === 'small' && styles.small,
         type === 'smallBold' && styles.smallBold,
         type === 'medium' && styles.medium,
+        type === 'mediumBold' && styles.mediumBold,
         type === 'subtitle' && styles.subtitle,
         type === 'link' && styles.link,
         type === 'linkPrimary' && styles.linkPrimary,
@@ -70,6 +72,11 @@ const styles = StyleSheet.create({
     fontSize: 24,
     lineHeight: 32,
     fontWeight: 500,
+  },
+  mediumBold: {
+    fontSize: 24,
+    lineHeight: 32,
+    fontWeight: 700,
   },
   title: {
     fontSize: 48,

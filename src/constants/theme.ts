@@ -79,5 +79,18 @@ export const Spacing = {
   six: 64,
 } as const
 
+export const Shadow = {
+  offset: 4,
+  opacity: 1,
+  radius: 0,
+  color: '#000',
+}
+
+export const Border = {
+  radius: 8,
+  width: 2,
+  largeWidth: 4,
+}
+
 export const BottomTabInset = Platform.select({ ios: 50, android: 80 }) ?? 0
 export const MaxContentWidth = 800
