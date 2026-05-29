@@ -1,42 +1,46 @@
 import { NeoIconButton } from '@/components/neo/neoIconButton'
 import { ThemedText } from '@/components/themed-text'
 import { Border, Shadow, Spacing } from '@/constants/theme'
+import { getDateKey } from '@/helpers/date'
 import type { Habit } from '@/lib/types/habit'
-import { Check, X } from 'lucide-react-native'
+import { useHabitsStore } from '@/store/habit-store'
+import { Check, Plus, X } from 'lucide-react-native'
 import { StyleSheet, View } from 'react-native'
 
 type Props = {
   habit: Habit
   progress?: number
   target?: number
-  onPressCheck?: () => void
 }
 
-export function HabitCard({ habit, onPressCheck }: Props) {
-  function formatDate(date: Date) {
-    return date.toISOString().split('T')[0]
+export function HabitCard({ habit }: Props) {
+  const incrementHabit = useHabitsStore((state) => state.incrementHabit)
+  const resetHabit = useHabitsStore((state) => state.resetHabit)
+
+  const today = getDateKey()
+  const target = habit.completionsPerDay ?? 1
+  const progress = habit.completions[today] ?? 0
+
+  function onHabitPress() {
+    if (!isCompleted) {
+      incrementHabit(habit.id)
+    } else {
+      resetHabit(habit.id)
+    }
   }
 
-  const today = formatDate(new Date())
-
-  const completionsToday = habit.completedDates.filter(
-    (d) => formatDate(new Date(d)) === today,
-  ).length
-
-  const target = habit.completionsPerDay ?? 1
-  const progress = completionsToday
-
-  function calculateStreak(dates: string[]) {
-    const uniqueDays = Array.from(
-      new Set(dates.map((d) => formatDate(new Date(d)))),
-    ).sort()
-
+  function calculateStreak(
+    completions: Record<string, number>,
+    target: number,
+  ) {
     let streak = 0
-    let current = new Date()
+    const current = new Date()
 
     while (true) {
-      const day = formatDate(current)
-      if (uniqueDays.includes(day)) {
+      const dayKey = getDateKey(current)
+      const count = completions[dayKey] ?? 0
+
+      if (count >= target) {
         streak += 1
         current.setDate(current.getDate() - 1)
       } else {
@@ -47,9 +51,16 @@ export function HabitCard({ habit, onPressCheck }: Props) {
     return streak
   }
 
-  const streak = calculateStreak(habit.completedDates)
+  const streak = calculateStreak(habit.completions, target)
 
   const isCompleted = progress >= target
+  const icon = isCompleted ? (
+    <X />
+  ) : habit.completionsPerDay === 1 ? (
+    <Check />
+  ) : (
+    <Plus />
+  )
 
   return (
     <View
@@ -72,8 +83,8 @@ export function HabitCard({ habit, onPressCheck }: Props) {
         </View>
 
         <NeoIconButton
-          onPress={onPressCheck}
-          icon={isCompleted ? <X /> : <Check />}
+          onPress={onHabitPress}
+          icon={icon}
           style={{ borderRadius: 25 }}
         />
       </View>

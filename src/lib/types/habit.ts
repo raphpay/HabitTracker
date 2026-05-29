@@ -5,6 +5,6 @@ export type Habit = {
   icon: string
   frequency: 'daily' | 'weekly' | 'monthly'
   completionsPerDay?: number
-  completedDates: string[]
-  createdAt: Date
+  completions: Record<string, number>
+  createdAt: string // For MMKV. Serialize a date with new Date().toISOString()
 }

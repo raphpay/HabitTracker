@@ -13,6 +13,7 @@ import {
 import { NeoButton } from '@/components/neo/neoButton'
 import { ThemedText } from '@/components/themed-text'
 import { Colors } from '@/constants/theme'
+import { getDateKey } from '@/helpers/date'
 import { Habit } from '@/lib/types/habit'
 import { useHabitsStore } from '@/store/habit-store'
 
@@ -53,10 +54,10 @@ export const CreateHabitSheet = forwardRef<BottomSheet, object>(
         color: selectedColor,
         icon: selectedIcon,
         frequency,
-        completedDates: [],
+        completions: { [getDateKey()]: 0 },
         completionsPerDay:
           frequency === 'daily' ? Number(completionsPerDay) : undefined,
-        createdAt: new Date(),
+        createdAt: new Date().toISOString(),
       }
 
       addHabit(newHabit)

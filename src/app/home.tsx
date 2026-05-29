@@ -15,7 +15,6 @@ export default function HomeScreen() {
   const bottomSheetRef = useRef<BottomSheet>(null)
   const habits = useHabitsStore((state) => state.habits)
   const hydrate = useHabitsStore((state) => state.hydrate)
-  const toggleHabit = useHabitsStore((state) => state.toggleHabit)
 
   function openCreateHabit() {
     bottomSheetRef.current?.expand()
@@ -39,13 +38,7 @@ export default function HomeScreen() {
       <SafeAreaView style={styles.safeArea}>
         <View style={{ flex: 1, width: '100%', gap: 24 }}>
           {habits.map((habit, index) => {
-            return (
-              <HabitCard
-                key={index}
-                habit={habit}
-                onPressCheck={() => toggleHabit(habit.id)}
-              />
-            )
+            return <HabitCard key={index} habit={habit} />
           })}
         </View>
 
